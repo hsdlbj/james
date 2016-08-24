@@ -1,0 +1,54 @@
+<html style="overflow:hidden;">
+
+<head>
+    <meta charset="utf-8">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="assets/dist/css/iconfont.css">
+    <link rel="stylesheet" href="assets/dist/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/dist/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/src/js/plugins/layer/skin/layer.css">
+</head>
+
+<body ng-app="mainApp">
+    <div class="framework" ng-controller="navCtrl">
+        <div class="framework-header">
+            <!-- 顶部 -->
+            <div class="topbar fn-clear">
+                <a class="logo" href=""><img src="assets/dist/images/logo.png"></a>
+                <div class="menu">
+                    <span class="menu-item">欢迎来到后台管理系统，今天是<span class="datetime" ng-bind="nowdate.date"></span></span>
+                    <a class="menu-item menu-news" href=""><i class="iconfont">&#xe630;</i>消息</a>
+                    <a class="menu-item menu-user" href=""><i class="iconfont">&#xe60b;</i>dyadmin</a>
+                    <a class="menu-item menu-exit" href=""><i class="iconfont">&#xe674;</i></a>
+                </div>
+            </div>
+            <!-- 导航 -->
+            <div class="navbar">
+                <div class="nav-inner">
+                    <a href="javascript:;" ng-class="{'active':list.name==navlistOn}" ng-repeat="list in navlist" ng-click="getNav(2,list.name)"><i class="iconfont {{list.iconclass}}"></i><span ng-bind="list.text"></span></a>
+                </div>
+            </div>
+        </div>
+        <!-- 侧栏 -->
+        <div class="framework-side">
+            <div class="side-here">您当前的位置： <b ng-bind="navNow"></b></div>
+            <div class="side-menu">
+                <dl ng-repeat="list in navlist2" ng-class="{'on':navlist3On==list.name}">
+                    <dt ng-click="showNav3(list.name)"><i class="iconfont {{list.iconclass}}"></i><span ng-bind="list.text"></span></dt>
+                    <dd>
+                        <a href="javascript:;" ng-class="{active:list2.url==navlist2On}" ng-repeat="list2 in list.child" ng-bind="list2.text" ng-click="getRightContent(list2.url)"></a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="framework-body sidebar">
+            <iframe ng-src="{{rightUrl}}" id="rightcontent" style="width: 100%;height: 100%;" frameborder="no" border="0" framespacing="0" dy-iframe></iframe>
+        </div>
+        <div class="framework-footer">
+            <p class="copy">Copyright © 2012 - 2015 闽ICP备123456789号-24 厦门帝网信息科技有限公司</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/dist/js/main.js" charset="utf-8"></script>
+</body>
+
+</html>
